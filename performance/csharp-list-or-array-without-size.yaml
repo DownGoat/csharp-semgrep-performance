@@ -1,0 +1,13 @@
+rules:
+  - id: csharp-list-or-array-without-size
+    languages: [csharp]
+    message: 'List or array is created without an explicit initial size'
+    severity: WARNING
+    pattern-either:
+      - pattern: new List<$T>()
+      - pattern: new $TYPE[] { }
+      - pattern: new $TYPE[] 
+    metadata:
+      category: performance
+      subcategory:
+      - easyfix

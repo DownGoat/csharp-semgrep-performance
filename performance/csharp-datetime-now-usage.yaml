@@ -1,0 +1,11 @@
+rules:
+  - id: csharp-datetime-now-usage
+    pattern: DateTime.Now
+    message: >
+      Avoid DateTime.Now due to time zone conversions and potential inconsistencies. Prefer DateTime.UtcNow.
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      subcategory:
+      - easyfix

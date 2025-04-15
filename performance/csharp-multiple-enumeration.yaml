@@ -1,0 +1,13 @@
+rules:
+  - id: csharp-multiple-enumeration
+    pattern: |
+      var $TMP = $COL.ToList();
+      ...
+      $TMP.ToList()
+    message: >
+      Avoid multiple calls to .ToList() or .ToArray() on the same collection. Store the result once and reuse it.
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      technology: csharp

@@ -1,0 +1,84 @@
+rules:
+  - id: csharp-string-concat-in-for-loop
+    patterns:
+      - pattern: |
+          for (var $I = $START; $COND; $STEP) {
+            $X = $X + $Y;
+          }
+      - pattern-not: $X = new StringBuilder(...)
+    message: >
+      Avoid string concatenation using '+' inside for loops. Use StringBuilder to avoid unnecessary allocations.
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      technology: csharp
+
+  - id: csharp-string-concat-plus-equals-in-for-loop
+    pattern: |
+      for (var $I = $START; $COND; $STEP) {
+        $X += $Y;
+      }
+    message: >
+      Avoid string concatenation using '+=' inside for loops. Use StringBuilder to avoid unnecessary allocations.
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      technology: csharp
+
+  - id: csharp-string-concat-in-foreach-loop
+    patterns:
+      - pattern: |
+          foreach (var $ITEM in $COLLECTION) {
+            $X = $X + $Y;
+          }
+      - pattern-not: $X = new StringBuilder(...)
+    message: >
+      Avoid string concatenation using '+' inside foreach loops. Use StringBuilder to avoid unnecessary allocations.
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      technology: csharp
+
+  - id: csharp-string-concat-plus-equals-in-foreach-loop
+    pattern: |
+      foreach (var $ITEM in $COLLECTION) {
+        $X += $Y;
+      }
+    message: >
+      Avoid string concatenation using '+=' inside foreach loops. Use StringBuilder to avoid unnecessary allocations.
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      technology: csharp
+
+  - id: csharp-string-concat-in-while-loop
+    patterns:
+      - pattern: |
+          while (...) {
+            $X = $X + $Y;
+          }
+      - pattern-not: $X = new StringBuilder(...)
+    message: >
+      Avoid string concatenation using '+' inside while loops. Use StringBuilder to avoid unnecessary allocations.
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      technology: csharp
+
+  - id: csharp-string-concat-plus-equals-in-while-loop
+    pattern: |
+      while (...) {
+        $X += $Y;
+      }
+    message: >
+      Avoid string concatenation using '+=' inside while loops. Use StringBuilder to avoid unnecessary allocations.
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      technology: csharp

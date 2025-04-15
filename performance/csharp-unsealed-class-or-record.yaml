@@ -1,0 +1,17 @@
+rules:
+  - id: csharp-unsealed-class-or-record
+    languages: [csharp]
+    message: 'Class or record is not sealed'
+    severity: WARNING
+    pattern-either:
+      - patterns:
+          - pattern: class $CLASSNAME { ... }
+          - pattern-not: sealed class $CLASSNAME { ... }
+          - pattern-not: static class $CLASSNAME { ... }
+      - patterns:
+          - pattern: record $RECORDNAME { ... }
+          - pattern-not: sealed record $RECORDNAME { ... }
+    metadata:
+      category: performance
+      subcategory:
+      - easyfix

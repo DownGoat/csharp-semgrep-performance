@@ -1,0 +1,12 @@
+rules:
+  - id: csharp-missing-cultureinfo-in-tryparse
+    patterns:
+      - pattern: int.TryParse($INPUT, out $OUT)
+      - pattern-not: int.TryParse($INPUT, System.Globalization.CultureInfo.InvariantCulture, out $OUT)
+    message: int.TryParse should be called with an explicit CultureInfo to avoid thread-local storage access
+    severity: WARNING
+    languages: [csharp]
+    metadata:
+      category: performance
+      subcategory:
+      - easyfix

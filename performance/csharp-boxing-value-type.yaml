@@ -1,0 +1,11 @@
+rules:
+  - id: csharp-boxing-value-type
+    pattern: |
+      object $O = $VAL;
+    message: >
+      Potential boxing of value type. This causes heap allocation. Consider avoiding implicit conversion to object.
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      technology: csharp

@@ -1,0 +1,19 @@
+rules:
+  - id: csharp-inefficient-string-comparison
+    patterns:
+      - pattern-either:
+          - pattern: $STR.ToLower().Equals($OTHER)
+          - pattern: $STR.ToLowerInvariant().Equals($OTHER)
+          - pattern: $STR.ToUpper().Equals($OTHER)
+          - pattern: $STR.ToUpperInvariant().Equals($OTHER)
+      - pattern-not: String.Equals($STR, $OTHER, StringComparison.OrdinalIgnoreCase)
+    message: >
+      Inefficient string comparison. Use String.Equals(s1, s2, StringComparison.OrdinalIgnoreCase) 
+      instead of ToLower()/ToUpper().Equals() for better performance and clarity.
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      subcategory:
+      - easyfix
+

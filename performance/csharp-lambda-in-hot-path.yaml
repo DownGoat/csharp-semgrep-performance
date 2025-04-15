@@ -1,0 +1,23 @@
+rules:
+  - id: csharp-lambda-in-hot-path
+    patterns:
+      - pattern: |
+          foreach (var $X in $Y) {
+            var $Z = $COL.$METHOD($LAMBDA);
+          }
+      - pattern: |
+          for (var $I = 0; $I < $N; $I++) {
+            var $Z = $COL.$METHOD($LAMBDA);
+          }
+      - pattern: |
+          while ($COND) {
+            var $Z = $COL.$METHOD($LAMBDA);
+          }
+    message: >
+      Avoid lambda expressions inside loops. This causes repeated delegate allocations on each iteration.
+      Consider caching the delegate or moving the lambda outside the loop.
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      technology: csharp

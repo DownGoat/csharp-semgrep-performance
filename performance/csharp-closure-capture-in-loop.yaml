@@ -1,0 +1,45 @@
+rules:
+  - id: csharp-closure-capture-in-for-loop
+    pattern: |
+      for (var $I = $START; $COND; $STEP) {
+        var $CLOSURE = () => {
+          Console.WriteLine($CAPTURE);
+        };
+      }
+    message: >
+      Closure inside for loop may capture loop variable ($CAPTURE). This can lead to heap allocations or bugs.
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      technology: csharp
+
+  - id: csharp-closure-capture-in-foreach-loop
+    pattern: |
+      foreach (var $ITEM in $COLLECTION) {
+        var $CLOSURE = () => {
+          Console.WriteLine($ITEM);
+        };
+      }
+    message: >
+      Closure inside foreach loop may capture iteration variable ($ITEM). This causes heap allocation.
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      technology: csharp
+
+  - id: csharp-closure-capture-local-function
+    pattern: |
+      foreach (var $ITEM in $COLLECTION) {
+        void $FN() {
+          Console.WriteLine($ITEM);
+        }
+      }
+    message: >
+      Local function declared in loop captures variable ($ITEM). This causes closure allocation.
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      technology: csharp
