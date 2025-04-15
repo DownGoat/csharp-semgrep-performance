@@ -28,5 +28,6 @@ rules:
     category: performance
     subcategory:
     - easyfix
+    - strings
     likelihood: LOW
     impact: LOW

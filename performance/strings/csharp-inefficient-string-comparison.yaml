@@ -16,4 +16,5 @@ rules:
       category: performance
       subcategory:
       - easyfix
+      - strings
 
