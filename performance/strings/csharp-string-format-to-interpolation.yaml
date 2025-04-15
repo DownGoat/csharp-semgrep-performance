@@ -19,6 +19,7 @@ rules:
       category: "style"
       references:
         - "https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/interpolated"
+        - "https://blog.smistad.me/semgrep-rules-for-c-performance/"
       technology:
         - csharp
       subcategory:
