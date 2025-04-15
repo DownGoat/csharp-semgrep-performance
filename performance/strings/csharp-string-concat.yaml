@@ -13,6 +13,9 @@ rules:
     metadata:
       category: performance
       technology: csharp
+      subcategory:
+      - easyfix
+      - strings
 
   - id: csharp-string-concat-plus-equals-in-for-loop
     pattern: |
@@ -26,6 +29,9 @@ rules:
     metadata:
       category: performance
       technology: csharp
+      subcategory:
+      - easyfix
+      - strings
 
   - id: csharp-string-concat-in-foreach-loop
     patterns:
@@ -41,6 +47,9 @@ rules:
     metadata:
       category: performance
       technology: csharp
+      subcategory:
+      - easyfix
+      - strings
 
   - id: csharp-string-concat-plus-equals-in-foreach-loop
     pattern: |
@@ -54,6 +63,9 @@ rules:
     metadata:
       category: performance
       technology: csharp
+      subcategory:
+      - easyfix
+      - strings
 
   - id: csharp-string-concat-in-while-loop
     patterns:
@@ -69,6 +81,9 @@ rules:
     metadata:
       category: performance
       technology: csharp
+      subcategory:
+      - easyfix
+      - strings
 
   - id: csharp-string-concat-plus-equals-in-while-loop
     pattern: |
@@ -82,3 +97,6 @@ rules:
     metadata:
       category: performance
       technology: csharp
+      subcategory:
+      - easyfix
+      - strings
