@@ -1,0 +1,13 @@
+rules:
+  - id: csharp-using-newtonsoft
+    pattern-either:
+      - pattern: using Newtonsoft.Json;
+      - pattern: using Newtonsoft.Json.Linq;
+    message: >
+      Consider switching to System.Text.Json for better performance and lower memory usage.
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      technology: csharp
+      references: "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/migrate-from-newtonsoft?pivots=dotnet-9-0"
