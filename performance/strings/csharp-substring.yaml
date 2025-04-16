@@ -1,0 +1,28 @@
+rules:
+  - id: csharp-avoid-substring-for-suffix
+    pattern: $STR.Substring($IDX)
+    message: Use AsSpan instead of Substring to avoid string allocations.
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      subcategory:
+      - easyfix
+      - strings
+      likelihood: LOW
+      impact: LOW
+    fix: $STR.AsSpan($IDX)
+
+  - id: csharp-avoid-substring-equals
+    pattern: $STR.Substring($IDX) == "$SUFFIX"
+    message: Use AsSpan(...).SequenceEqual("...") instead of Substring == "..." for performance.
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      subcategory:
+      - easyfix
+      - strings
+      likelihood: LOW
+      impact: LOW
+    fix: $STR.AsSpan($IDX).SequenceEqual("$SUFFIX")

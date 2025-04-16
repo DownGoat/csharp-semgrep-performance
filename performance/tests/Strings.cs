@@ -7,16 +7,26 @@ namespace SemgrepClosureTests
 {
     public class SemgrepClosureTestCases
     {
-        public void Foo(string left, string right) {
+
+        public void Comparisons(string left, string right) {
+            var b1 = left.ToLower().Equals(right);
+            var b2 = left.ToLowerInvariant().Equals(right);
+            var b3 = left.ToUpper().Equals(right);
+            var b4 = left.ToUpperInvariant().Equals(right);
+            var b5 = left.Equals(right, StringComparison.OrdinalIgnoreCase);
+        }
+
+        public void Format(string left, string right)
+        {
             var x = string.Format("{0}/{1}", left, right);
 
             // Should match these
             string.Format("{0}", value);
             string.Format("{0}/{1}", left, right);
             string.Format("Hello, {0}!", name);
-            String.Format("Requires: {0} {1} {2}", name, version, architecture); 
+            String.Format("Requires: {0} {1} {2}", name, version, architecture);
             String.Format("http://{0}:{1}", server, port);
-            string.Format(@"{0}\{1}", left, right); 
+            string.Format(@"{0}\{1}", left, right);
 
             // Should not matche these
             string.Format("{0:3N}", value); // Has format specifier
@@ -221,6 +231,37 @@ namespace SemgrepClosureTests
                 result += item;
             }
             return result;
+        }
+
+        public void SubString()
+        {
+            string tName = "VariantArrayItem123";
+            string s = "ABCINF";
+            int i = 3;
+
+            // bad: allocates new string
+            var x = tName.Substring("VariantArray".Length);
+
+            // good: avoids allocation
+            var y = tName.AsSpan("VariantArray".Length);
+
+            // bad: substring compared to string literal
+            if (s.Substring(i) == "INF")
+            {
+                Console.WriteLine("Match!");
+            }
+
+            // good: avoids allocation
+            if (s.AsSpan(i).SequenceEqual("INF"))
+            {
+                Console.WriteLine("Match!");
+            }
+
+            // neutral: not a suffix comparison
+            var z = s.Substring(0, 2);
+
+            // neutral: Substring result not compared to literal
+            var comp = s.Substring(i).ToLower();
         }
     }
 }

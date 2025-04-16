@@ -5,6 +5,7 @@ rules:
       Avoid DateTime.Now due to time zone conversions and potential inconsistencies. Prefer DateTime.UtcNow.
     languages: [csharp]
     severity: WARNING
+    fix: DateTime.UtcNow
     metadata:
       category: performance
       subcategory:

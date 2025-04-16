@@ -10,6 +10,7 @@ rules:
     message: >
       Inefficient string comparison. Use String.Equals(s1, s2, StringComparison.OrdinalIgnoreCase) 
       instead of ToLower()/ToUpper().Equals() for better performance and clarity.
+    fix: String.Equals($STR, $OTHER, StringComparison.OrdinalIgnoreCase)
     languages: [csharp]
     severity: WARNING
     metadata:
