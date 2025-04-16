@@ -3,5 +3,9 @@
 using BenchmarkDotNet.Running;
 using Benchmarks;
 
-var summary = BenchmarkRunner.Run<StringComparisons>();
+// var summary = BenchmarkRunner.Run<StringComparisons>();
+// var summary = BenchmarkRunner.Run<StringFormat>();
+// var summary = BenchmarkRunner.Run<StringConcat>();
+// var summary = BenchmarkRunner.Run<SealedVsUnsealed>();
+var summary = BenchmarkRunner.Run<DateTimeNow>();
 Console.WriteLine(summary);

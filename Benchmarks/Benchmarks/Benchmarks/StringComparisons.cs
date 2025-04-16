@@ -65,7 +65,7 @@ public class StringComparisons
         return TestString1.ToUpperInvariant().Equals(TestString3.ToUpperInvariant());
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
     public bool StringEquals_OrdinalIgnoreCase_SameIgnoreCase()
     {
         return string.Equals(TestString1, TestString3, StringComparison.OrdinalIgnoreCase);
