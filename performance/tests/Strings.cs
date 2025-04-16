@@ -10,10 +10,15 @@ namespace SemgrepClosureTests
         public void Foo(string left, string right) {
             var x = string.Format("{0}/{1}", left, right);
 
+            // Should match these
             string.Format("{0}", value);
             string.Format("{0}/{1}", left, right);
             string.Format("Hello, {0}!", name);
+            String.Format("Requires: {0} {1} {2}", name, version, architecture); 
+            String.Format("http://{0}:{1}", server, port);
+            string.Format(@"{0}\{1}", left, right); 
 
+            // Should not matche these
             string.Format("{0:3N}", value); // Has format specifier
             string.Format("The value will be {0:3N} (or {1:P}) on {2:MMMM yyyy gg}", x, y, theDate); // Complex formatting
         }

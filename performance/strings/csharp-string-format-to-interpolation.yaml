@@ -1,27 +1,22 @@
 rules:
   - id: csharp-string-format-to-interpolation
-    pattern-either:
-      - pattern: string.Format("{0}", $ARG)
-      - pattern: string.Format("{0}{1}", $ARG1, $ARG2)
-      - pattern: string.Format("{0}/{1}", $ARG1, $ARG2)
-      - pattern: string.Format("{0}{1}{2}", $ARG1, $ARG2, $ARG3)
-      - pattern: string.Format("{0}/{1}/{2}", $ARG1, $ARG2, $ARG3)
-      - pattern: string.Format("$STR1{0}$STR2", $ARG)
-      - pattern: string.Format("$STR1{0}$STR2{1}$STR3", $ARG1, $ARG2)
-      - pattern: string.Format("$STR1{0}$STR2{1}$STR3{2}$STR4", $ARG1, $ARG2, $ARG3)
-    pattern-not-regex: |-
-      \{\d+:
-    message: "Use string interpolation ($\"...\") instead of string.Format for simple cases"
     languages: [csharp]
-    severity: INFO
+    severity: WARNING
+    message: "Use string interpolation ($\"...\") instead of string.Format for simple cases"
     metadata:
       description: "Detects simple string.Format calls that could be replaced with string interpolation"
-      category: "style"
+      category: "performance"
       references:
         - "https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/interpolated"
         - "https://blog.smistad.me/semgrep-rules-for-c-performance/"
       technology:
         - csharp
       subcategory:
-      - easyfix
-      - strings
+        - easyfix
+        - strings
+    pattern-either:
+      - pattern: string.Format("$FMT", $A1)
+      - pattern: string.Format("$FMT", $A1, $A2)
+      - pattern: string.Format("$FMT", $A1, $A2, $A3)
+      - pattern: string.Format("$FMT", $A1, $A2, $A3, $A4)
+    pattern-not-regex: \{\d+:[^}]+\}

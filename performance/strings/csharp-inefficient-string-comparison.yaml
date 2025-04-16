@@ -17,4 +17,6 @@ rules:
       subcategory:
       - easyfix
       - strings
+      references:
+      - "https://blog.smistad.me/semgrep-rules-for-c-performance/"
 
