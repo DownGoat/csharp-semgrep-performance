@@ -1,9 +1,27 @@
 rules:
+  - id: csharp-avoid-substring-for-span-accepting-methods
+    languages: [csharp]
+    message: Use AsSpan instead of Substring to avoid string allocations when passing to methods accepting ReadOnlySpan<char>.
+    severity: WARNING
+    metadata:
+      category: performance
+      subcategory:
+        - easyfix
+        - strings
+      likelihood: LOW
+      impact: LOW
+    patterns:
+      - pattern: $METHOD($STR.Substring($IDX))
+      - metavariable-regex:
+          metavariable: $METHOD
+          regex: >
+            (int|float|double|decimal|uint|long|bool|Guid|DateTime|DateTimeOffset)\.(Parse(Exact)?|TryParse(Exact)?)
+    fix: $METHOD($STR.AsSpan($IDX))
   - id: csharp-avoid-substring-for-suffix
     pattern: $STR.Substring($IDX)
     message: Use AsSpan instead of Substring to avoid string allocations.
     languages: [csharp]
-    severity: WARNING
+    severity: INFO
     metadata:
       category: performance
       subcategory:

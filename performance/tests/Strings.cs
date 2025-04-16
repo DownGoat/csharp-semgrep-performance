@@ -8,7 +8,8 @@ namespace SemgrepClosureTests
     public class SemgrepClosureTestCases
     {
 
-        public void Comparisons(string left, string right) {
+        public void Comparisons(string left, string right)
+        {
             var b1 = left.ToLower().Equals(right);
             var b2 = left.ToLowerInvariant().Equals(right);
             var b3 = left.ToUpper().Equals(right);
@@ -239,8 +240,36 @@ namespace SemgrepClosureTests
             string s = "ABCINF";
             int i = 3;
 
+            int.Parse("this is a string".Substring("this".Length));
+            int.TryParse("this is a string".Substring("this".Length), out var f);
+            float.Parse("this is a string".Substring("this".Length));
+            float.TryParse("this is a string".Substring("this".Length), out var f);
+            double.Parse("this is a string".Substring("this".Length));
+            double.TryParse("this is a string".Substring("this".Length), out var f);
+            decimal.Parse("this is a string".Substring("this".Length));
+            decimal.TryParse("this is a string".Substring("this".Length),, out var f);
+            uint.Parse("this is a string".Substring("this".Length));
+            uint.TryParse("this is a string".Substring("this".Length), out var f);
+            long.Parse("this is a string".Substring("this".Length));
+            long.TryParse("this is a string".Substring("this".Length), out var f);
+            bool.Parse("this is a string".Substring("this".Length));
+            bool.TryParse("this is a string".Substring("this".Length), out var f);
+
+            DateTime.Parse("this is a string".Substring("this".Length));
+            DateTime.TryParse("this is a string".Substring("this".Length), out var f);
+            DateTime.ParseExact("this is a string".Substring("this".Length));
+            DateTime.TryParseExact("this is a string".Substring("this".Length), out var f);
+            DateTimeOffset.Parse("this is a string".Substring("this".Length));
+            DateTimeOffset.TryParse("this is a string".Substring("this".Length), out var f);
+            DateTimeOffset.ParseExact("this is a string".Substring("this".Length));
+            DateTimeOffset.TryParseExact("this is a string".Substring("this".Length), out var f);
+            Guid.Parse("this is a string".Substring("this".Length));
+            Guid.ParseExact("this is a string".Substring("this".Length));
+            Guid.TryParse("this is a string".Substring("this".Length), out var f);
+            Guid.TryParseExact("this is a string".Substring("this".Length), out var f);
+
             // bad: allocates new string
-            var x = tName.Substring("VariantArray".Length);
+            int.Parse(tName.Substring("VariantArray".Length),;
 
             // good: avoids allocation
             var y = tName.AsSpan("VariantArray".Length);
