@@ -1,0 +1,10 @@
+rules:
+  - id: csharp-multiple-enumeration
+    pattern: for (var $I = 0; $I != $N; $I++)
+    message: >
+      use less than instead of not for the condition, the JIT can avoid boundary checks
+    languages: [csharp]
+    severity: WARNING
+    metadata:
+      category: performance
+      technology: csharp

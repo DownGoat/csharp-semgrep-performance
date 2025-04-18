@@ -1,4 +1,6 @@
-﻿## StringComparisons
+﻿# Strings
+
+## StringComparisons
 
 | Method                                        | Mean       | Error     | StdDev    | Median     | Ratio | RatioSD | Rank | Gen0   | Allocated | Alloc Ratio |
 |---------------------------------------------- |-----------:|----------:|----------:|-----------:|------:|--------:|-----:|-------:|----------:|------------:|
@@ -34,6 +36,22 @@ StringComparisons.StringEquals_OrdinalIgnoreCase_Different: Default      -> The 
 | StringBuilder | 230.9 ns |  4.56 ns |  6.55 ns |  1.00 |    0.04 |    1 | 0.1018 |   1.25 KB |        1.00 |
 | Loop          | 688.9 ns | 13.22 ns | 30.10 ns |  2.99 |    0.15 |    2 | 0.4539 |   5.56 KB |        4.45 |
 
+## SubstringBenchmark
+
+| Method     | Mean      | Error     | StdDev    | Median    | Ratio | RatioSD | Rank | Gen0   | Allocated | Alloc Ratio |
+|----------- |----------:|----------:|----------:|----------:|------:|--------:|-----:|-------:|----------:|------------:|
+| AsSpan     | 0.2085 ns | 0.0242 ns | 0.0227 ns | 0.2062 ns |  0.05 |    0.00 |    1 |      - |         - |        0.00 |
+| Substring  | 4.5797 ns | 0.1196 ns | 0.1119 ns | 4.5844 ns |  1.00 |    0.03 |    2 | 0.0057 |      72 B |        1.00 |
+| RangeIndex | 6.5919 ns | 0.1954 ns | 0.4867 ns | 6.3656 ns |  1.44 |    0.11 |    3 | 0.0057 |      72 B |        1.00 |
+
+## Transcoding
+
+| Method    | Mean      | Error     | StdDev    | Median    | Ratio | RatioSD | Rank | Gen0   | Allocated | Alloc Ratio |
+|---------- |----------:|----------:|----------:|----------:|------:|--------:|-----:|-------:|----------:|------------:|
+| U8ToArray |  4.422 ns | 0.2384 ns | 0.6992 ns |  4.200 ns |  1.02 |    0.22 |    1 | 0.0032 |      40 B |        1.00 |
+| Encoder   | 11.402 ns | 0.2951 ns | 0.8467 ns | 11.255 ns |  2.64 |    0.43 |    2 | 0.0032 |      40 B |        1.00 |
+
+
 ## SealedVsUnsealed
 
 | Method    | Mean      | Error     | StdDev    | Ratio | RatioSD | Rank | Allocated | Alloc Ratio |
@@ -47,11 +65,3 @@ StringComparisons.StringEquals_OrdinalIgnoreCase_Different: Default      -> The 
 |------- |----------:|---------:|---------:|------:|--------:|-----:|-------:|----------:|------------:|
 | UtcNow |  90.60 ns | 1.862 ns | 1.742 ns |  1.00 |    0.03 |    1 | 0.0050 |      64 B |        1.00 |
 | Now    | 145.75 ns | 2.796 ns | 2.479 ns |  1.61 |    0.04 |    2 | 0.0050 |      64 B |        1.00 |
-
-## SubstringBenchmark
-
-| Method     | Mean      | Error     | StdDev    | Median    | Ratio | RatioSD | Rank | Gen0   | Allocated | Alloc Ratio |
-|----------- |----------:|----------:|----------:|----------:|------:|--------:|-----:|-------:|----------:|------------:|
-| AsSpan     | 0.2085 ns | 0.0242 ns | 0.0227 ns | 0.2062 ns |  0.05 |    0.00 |    1 |      - |         - |        0.00 |
-| Substring  | 4.5797 ns | 0.1196 ns | 0.1119 ns | 4.5844 ns |  1.00 |    0.03 |    2 | 0.0057 |      72 B |        1.00 |
-| RangeIndex | 6.5919 ns | 0.1954 ns | 0.4867 ns | 6.3656 ns |  1.44 |    0.11 |    3 | 0.0057 |      72 B |        1.00 |

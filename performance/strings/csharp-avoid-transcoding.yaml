@@ -1,0 +1,16 @@
+rules:
+- id: csharp-avoid-transcoding
+  patterns:
+  - pattern-either:
+    - pattern: Encoding.UTF8.GetBytes("$STR")
+  message: Use u8 to avoid csharp-avoid-transcoding
+  fix: \"$STR\"u8.ToArray()
+  languages: [csharp]
+  severity: WARNING
+  metadata:
+    category: performance
+    subcategory:
+    - easyfix
+    - strings
+    likelihood: LOW
+    impact: LOW
