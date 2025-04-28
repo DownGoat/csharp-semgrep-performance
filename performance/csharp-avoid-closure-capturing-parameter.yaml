@@ -1,0 +1,55 @@
+rules:
+  - id: csharp-avoid-closure-captures-variable-loopable
+    languages: [csharp]
+    severity: WARNING
+    message: >
+      Lambda captures method parameter '$EXTERNALVAR'. Move it to a local variable before the lambda to reduce closure size and allocations.
+    metadata:
+      category: performance
+      technology:
+        - csharp
+    patterns:
+      - pattern: $EXTERNALVAR = $EXPRESSION
+      - pattern: $VAR = $INIT
+      - pattern: $VAR = $COLLECTION.$METHOD($LAMBDA => $CONTENTS)
+      - metavariable-pattern:
+          metavariable: $CONTENTS
+          pattern: $EXTERNALVAR
+
+  - id: csharp-avoid-closure-captures-parameter-loopable
+    languages: [csharp]
+    severity: WARNING
+    message: >
+      Lambda captures method parameter '$EXTERNALVAR'. Move it to a local variable before the lambda to reduce closure size and allocations.
+    metadata:
+      category: performance
+      technology:
+        - csharp
+    patterns:
+      - pattern: $RETURNTYPE $FUNC($EXTERNALVAR) {...}
+      - pattern: $VAR = $INIT
+      - pattern: $VAR = $COLLECTION.$METHOD($LAMBDA => $CONTENTS)
+      - metavariable-pattern:
+          metavariable: $CONTENTS
+          pattern: $EXTERNALVAR
+    
+  - id: csharp-avoid-closure-captures-scopeable-parameter
+    languages: [csharp]
+    severity: WARNING
+    message: >
+      Lambda captures method parameter '$PARAM'. Move it to a local variable before the lambda to reduce closure size and allocations.
+    metadata:
+      category: performance
+      technology:
+        - csharp
+    pattern: |
+      {
+        ...
+        if (...)
+        {
+          ...
+          $FUNC($ARG => $PARAM.$METHOD(...));
+          ...
+        }
+        ...
+      }

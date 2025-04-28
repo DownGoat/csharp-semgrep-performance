@@ -1,0 +1,13 @@
+rules:
+  - id: csharp-memory-stream-to-array.yaml
+    languages: [csharp]
+    severity: WARNING
+    message: >
+      Using .ToArray() on a MemoryStream can cause unnecessary allocations. Check if you can use the MemoryStream's internal buffer directly. Through $MEMORYSTREAM.GetBuffer()
+    metadata:
+      category: performance
+      technology:
+        - csharp
+    patterns:
+      - pattern: (MemoryStream $MEMORYSTREAM)
+      - pattern: $MEMORYSTREAM.ToArray()
