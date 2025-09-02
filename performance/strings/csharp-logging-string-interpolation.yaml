@@ -2,24 +2,14 @@ rules:
 - id: csharp-logging-string-interpolation
   patterns:
   - pattern-either:
-    - pattern: $LOG.Debug($"...")
-    - pattern: $LOG.Error($"...")
-    - pattern: $LOG.Fatal($"...")
-    - pattern: $LOG.Information($"...")
-    - pattern: $LOG.Verbose($"...")
-    - pattern: $LOG.Warning($"...")
-    - pattern: $LOG.LogCritical($"...")
-    - pattern: $LOG.LogDebug($"...")
-    - pattern: $LOG.LogError($"...")
-    - pattern: $LOG.LogInformation($"...")
-    - pattern: $LOG.LogTrace($"...")
-    - pattern: $LOG.LogWarning($"...")
-    - pattern: $LOG.Info($"...")
-    - pattern: $LOG.Trace($"...")
-    - pattern: $LOG.Warn($"...")
+    - pattern: $LOG.$METHOD($"...")
+    - pattern: $LOG.$METHOD("..." + $VAR)
   - metavariable-regex:
       metavariable: $LOG
       regex: .*(log|LOG|Log)
+  - metavariable-regex:
+      metavariable: $METHOD
+      regex: (Debug|Error|FatalInformation|Verbose|Warning|LogCritical|LogDebug|LogError|LogInformation|LogTrace|LogWarning|Info|Trace|Warn)
   message: >-
     String interpolation in log message creates extra allocations.
   languages: [csharp]
